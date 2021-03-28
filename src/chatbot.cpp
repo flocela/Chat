@@ -71,7 +71,7 @@ ChatBot::~ChatBot()
     }
 }
 
-void ChatBot::print(std:;string title)
+void ChatBot::print(std::string title)
 {
   std::cout << title << std::endl;
 }
