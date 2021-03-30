@@ -23,28 +23,22 @@ private:
 	void print(std::string title);
 public:
     // constructors / destructors
-    ChatBot();                                    // constructor WITHOUT memory allocation
-    ChatBot(std::string filename);                // constructor WITH memory allocation
-    ChatBot(const ChatBot& other);                // copy constructor
-    ChatBot(ChatBot&& other) noexcept;            // move constructor
-    ChatBot& operator=(const ChatBot& other);     // copy assignment
-    ChatBot& operator=(ChatBot&& other) noexcept; // move assignment
-    ~ChatBot();
-
-    //// STUDENT CODE
-    ////
-
-    ////
-    //// EOF STUDENT CODE
+    ChatBot ();                                    // constructor WITHOUT memory allocation
+    ChatBot (std::string filename);                // constructor WITH memory allocation
+    ChatBot (const ChatBot& other);                // copy constructor
+    ChatBot (ChatBot&& other) noexcept;            // move constructor
+    ChatBot& operator= (const ChatBot& other);     // copy assignment
+    ChatBot& operator= (ChatBot&& other) noexcept; // move assignment
+    ~ChatBot ();
 
     // getters / setters
-    void SetCurrentNode(GraphNode *node);
-    void SetRootNode(GraphNode *rootNode) { _rootNode = rootNode; }
-    void SetChatLogicHandle(ChatLogic *chatLogic) { _chatLogic = chatLogic; }
-    wxBitmap *GetImageHandle() { return _image; }
+    void SetCurrentNode (GraphNode *node);
+    void SetRootNode (GraphNode *rootNode) { _rootNode = rootNode; }
+    void SetChatLogicHandle (ChatLogic *chatLogic) { _chatLogic = chatLogic; }
+    wxBitmap *GetImageHandle () { return _image; }
 
     // communication
-    void ReceiveMessageFromUser(std::string message);
+    void ReceiveMessageFromUser (std::string message);
 };
 
 #endif /* CHATBOT_H_ */

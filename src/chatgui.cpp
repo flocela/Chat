@@ -16,7 +16,7 @@ IMPLEMENT_APP(ChatBotApp);
 std::string dataPath = "../";
 std::string imgBasePath = dataPath + "images/";
 
-bool ChatBotApp::OnInit()
+bool ChatBotApp::OnInit ()
 {
     // create window with name and show it
     ChatBotFrame *chatBotFrame = new ChatBotFrame(wxT("Udacity ChatBot"));
@@ -26,7 +26,7 @@ bool ChatBotApp::OnInit()
 }
 
 // wxWidgets FRAME
-ChatBotFrame::ChatBotFrame(const wxString &title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(width, height))
+ChatBotFrame::ChatBotFrame (const wxString &title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(width, height))
 {
     // create panel with background image
     ChatBotFrameImagePanel *ctrlPanel = new ChatBotFrameImagePanel(this);
@@ -50,7 +50,7 @@ ChatBotFrame::ChatBotFrame(const wxString &title) : wxFrame(NULL, wxID_ANY, titl
     this->Centre();
 }
 
-void ChatBotFrame::OnEnter(wxCommandEvent &WXUNUSED(event))
+void ChatBotFrame::OnEnter (wxCommandEvent &WXUNUSED(event))
 {
     // retrieve text from text control
     wxString userText = _userTextCtrl->GetLineText(0);
@@ -69,23 +69,23 @@ BEGIN_EVENT_TABLE(ChatBotFrameImagePanel, wxPanel)
 EVT_PAINT(ChatBotFrameImagePanel::paintEvent) // catch paint events
 END_EVENT_TABLE()
 
-ChatBotFrameImagePanel::ChatBotFrameImagePanel(wxFrame *parent) : wxPanel(parent)
+ChatBotFrameImagePanel::ChatBotFrameImagePanel (wxFrame *parent) : wxPanel(parent)
 {
 }
 
-void ChatBotFrameImagePanel::paintEvent(wxPaintEvent &evt)
+void ChatBotFrameImagePanel::paintEvent (wxPaintEvent &evt)
 {
     wxPaintDC dc(this);
     render(dc);
 }
 
-void ChatBotFrameImagePanel::paintNow()
+void ChatBotFrameImagePanel::paintNow ()
 {
     wxClientDC dc(this);
     render(dc);
 }
 
-void ChatBotFrameImagePanel::render(wxDC &dc)
+void ChatBotFrameImagePanel::render (wxDC &dc)
 {
     // load backgroud image from file
     wxString imgFile = imgBasePath + "sf_bridge.jpg";
@@ -104,7 +104,7 @@ BEGIN_EVENT_TABLE(ChatBotPanelDialog, wxPanel)
 EVT_PAINT(ChatBotPanelDialog::paintEvent) // catch paint events
 END_EVENT_TABLE()
 
-ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
+ChatBotPanelDialog::ChatBotPanelDialog (wxWindow *parent, wxWindowID id)
     : wxScrolledWindow(parent, id)
 {
     // sizer will take care of determining the needed scroll size
@@ -114,31 +114,16 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     // allow for PNG images to be handled
     wxInitAllImageHandlers();
 
-    //// STUDENT CODE
-    ////
-
-    // create chat logic instance
     _ptr_chatLogic = std::make_unique<ChatLogic>();
-
-    // pass pointer to chatbot dialog so answers can be displayed in GUI
     _ptr_chatLogic->SetPanelDialogHandle(this);
-
-    // load answer graph from file
     _ptr_chatLogic->LoadAnswerGraphFromFile(dataPath + "src/answergraph.txt");
-
-    ////
-    //// EOF STUDENT CODE
 }
 
-ChatBotPanelDialog::~ChatBotPanelDialog()
+ChatBotPanelDialog::~ChatBotPanelDialog ()
 {
-    //// STUDENT CODE
-    ////
-    ////
-    //// EOF STUDENT CODE
 }
 
-void ChatBotPanelDialog::AddDialogItem(wxString text, bool isFromUser)
+void ChatBotPanelDialog::AddDialogItem (wxString text, bool isFromUser)
 {
     // add a single dialog element to the sizer
     ChatBotPanelDialogItem *item = new ChatBotPanelDialogItem(this, text, isFromUser);
@@ -157,26 +142,26 @@ void ChatBotPanelDialog::AddDialogItem(wxString text, bool isFromUser)
     this->DoScroll(0, sy);
 }
 
-void ChatBotPanelDialog::PrintChatbotResponse(std::string response)
+void ChatBotPanelDialog::PrintChatbotResponse (std::string response)
 {
     // convert string into wxString and add dialog element
     wxString botText(response.c_str(), wxConvUTF8);
     AddDialogItem(botText, false);
 }
 
-void ChatBotPanelDialog::paintEvent(wxPaintEvent &evt)
+void ChatBotPanelDialog::paintEvent (wxPaintEvent &evt)
 {
     wxPaintDC dc(this);
     render(dc);
 }
 
-void ChatBotPanelDialog::paintNow()
+void ChatBotPanelDialog::paintNow ()
 {
     wxClientDC dc(this);
     render(dc);
 }
 
-void ChatBotPanelDialog::render(wxDC &dc)
+void ChatBotPanelDialog::render (wxDC &dc)
 {
     wxImage image;
     image.LoadFile(imgBasePath + "sf_bridge_inner.jpg");
@@ -188,7 +173,7 @@ void ChatBotPanelDialog::render(wxDC &dc)
     dc.DrawBitmap(_image, 0, 0, false);
 }
 
-ChatBotPanelDialogItem::ChatBotPanelDialogItem(wxPanel *parent, wxString text, bool isFromUser)
+ChatBotPanelDialogItem::ChatBotPanelDialogItem (wxPanel *parent, wxString text, bool isFromUser)
     : wxPanel(parent, -1, wxPoint(-1, -1), wxSize(-1, -1), wxBORDER_NONE)
 {
     // retrieve image from chatbot
