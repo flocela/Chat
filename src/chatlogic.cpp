@@ -10,6 +10,7 @@
 #include "graphnode.h"
 #include "chatbot.h"
 #include "chatlogic.h"
+#include<iostream>
 
 
 ChatLogic::ChatLogic()
@@ -199,7 +200,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     local.SetChatLogicHandle(this);
     local.SetRootNode(rootNode);
     rootNode->MoveChatbotHere(std::move(local));
-    
+    //std::cout << "chatlogic end of init" << std::endl;
     ////
     //// EOF STUDENT CODE
 }

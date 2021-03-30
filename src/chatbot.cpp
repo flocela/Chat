@@ -9,9 +9,9 @@
 #include "chatbot.h"
 
 // constructor WITHOUT memory allocation
-ChatBot::ChatBot()
+ChatBot::ChatBot ()
 {	
-  print("ChatBot Constructor()");
+    print("ChatBot Constructor()");
  
     _image = nullptr;
     _chatLogic = nullptr;
@@ -19,7 +19,7 @@ ChatBot::ChatBot()
 }
 
 // constructor WITH memory allocation
-ChatBot::ChatBot(std::string filename)
+ChatBot::ChatBot (std::string filename)
 {
    	print("ChatBot Constructor(std::string filename)");
     
@@ -28,13 +28,13 @@ ChatBot::ChatBot(std::string filename)
     _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
 }
 
-ChatBot::ChatBot(const ChatBot& o)
+ChatBot::ChatBot (const ChatBot& o)
  :_chatLogic(o._chatLogic), 
   _rootNode(o._rootNode), 
   _currentNode(o._currentNode)
  {
-     print("ChatBot Copy Constructor");
-     _image = new wxBitmap(*(o._image));
+    print("ChatBot Copy Constructor");
+    _image = new wxBitmap(*(o._image));
  }
 
  ChatBot::ChatBot(ChatBot&& o) noexcept
