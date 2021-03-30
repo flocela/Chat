@@ -46,15 +46,19 @@ ChatBot::ChatBot (const ChatBot& o)
      print("Move Constructor");
  }
 
- ChatBot& ChatBot::operator= (const ChatBot& other)
+ ChatBot& ChatBot::operator= (const ChatBot& o)
  {
      print("Copy Assignment Operator");
-     return *this = ChatBot(other);
+     if (this == &o)
+        return *this;
+     return *this = ChatBot(o);
  }
 
  ChatBot& ChatBot::operator= (ChatBot&& o) noexcept
  {
      print("Move Assignment Operator");
+     if (this == &o)
+        return *this;
      _chatLogic   = o._chatLogic;
      _rootNode    = o._rootNode;
      _currentNode = o._currentNode;
